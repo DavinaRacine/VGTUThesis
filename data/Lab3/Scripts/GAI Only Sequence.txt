@@ -1,0 +1,109 @@
+@startuml
+title AI-Enhanced Sequence for Repository Quality Assessment (with Feedback & Dashboard)
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam participant {
+  BackgroundColor #EAF6FF
+  BorderColor #336699
+}
+skinparam actorStyle awesome
+skinparam note {
+  BackgroundColor #FEFBEA
+  BorderColor #CCCC99
+}
+
+actor "Researcher / Analyst" as User
+participant "GitHub API" as API
+participant "Data Processor" as DataProc
+participant "GAI Data Curator" as GAI1
+participant "Statistical Analyzer" as Stats
+participant "GAI Insight Summarizer" as GAI2
+participant "Process Miner" as ProcMine
+participant "GAI Pattern Interpreter" as GAI3
+participant "Result Merger" as Merger
+participant "GAI Reliability Advisor" as GAI4
+participant "Report Generator / Dashboard" as Report
+
+== Data Extraction ==
+User -> API : Request Repository Event Data
+API --> User : Return Raw Event Logs (JSON/CSV)
+
+== Data Preparation ==
+User -> DataProc : Load Extracted API Data
+activate DataProc
+DataProc -> GAI1 : Send Raw Data for Cleaning & Enrichment
+activate GAI1
+note right of GAI1
+  Cleans data, fills missing values,\n and flags anomalies
+end note
+GAI1 --> DataProc : Return Cleaned Event Logs
+deactivate GAI1
+DataProc --> Stats : Forward Cleaned Data for Analysis
+deactivate DataProc
+
+== Statistical Analysis ==
+activate Stats
+Stats -> Stats : Compute Metrics (commits, issues, reviews)
+Stats -> GAI2 : Request Natural-Language Summary
+activate GAI2
+note right of GAI2
+  Translates numeric metrics into\nhuman-readable insights
+end note
+GAI2 --> Stats : Return Interpretations
+deactivate GAI2
+Stats --> Merger : Send Metrics + Summaries
+deactivate Stats
+
+== Process Mining ==
+activate ProcMine
+User -> ProcMine : Provide Event Logs for Process Mining
+ProcMine -> ProcMine : Discover Process Models (BPMN/Petri Net)
+ProcMine -> GAI3 : Request Pattern Interpretation
+activate GAI3
+note right of GAI3
+  Describes bottlenecks, loops,\nand efficiency patterns
+end note
+GAI3 --> ProcMine : Return Process Insights
+deactivate GAI3
+ProcMine --> Merger : Send Models + Insights
+deactivate ProcMine
+
+== Merging and Reliability Assessment ==
+activate Merger
+Merger -> GAI4 : Combine Statistical + Process Results
+activate GAI4
+note right of GAI4
+  Aggregates insights, calculates reliability score,\n and suggests improvements
+end note
+GAI4 --> Merger : Return Reliability Score + Recommendations
+deactivate GAI4
+Merger --> Report : Send Final Evaluation & Recommendations
+deactivate Merger
+
+== Reporting and Feedback ==
+activate Report
+Report --> User : Display Interactive Dashboard (Reliability, Trends, Insights)
+note right of Report
+  User can view detailed metrics,\nAI explanations, and visual process maps
+end note
+User -> Report : Review & Adjust Parameters (thresholds, filters)
+Report --> GAI4 : Submit Adjustments for Reevaluation
+
+== Feedback Loop ==
+GAI4 -> DataProc : Suggest Data Refinement or Additional Extraction
+GAI4 -> Stats : Request Updated Statistical Analysis
+GAI4 -> ProcMine : Request Updated Process Mining
+note over GAI4
+  Feedback loop triggers re-analysis\nif reliability confidence < threshold
+end note
+Stats --> Merger : Updated Metrics
+ProcMine --> Merger : Updated Process Model
+Merger -> GAI4 : Recombine Updated Results
+GAI4 --> Report : Updated Reliability Summary
+Report --> User : Updated Dashboard View
+
+User --> GAI4 : Approve Final Results
+GAI4 --> User : Confirm Process Complete
+
+@enduml

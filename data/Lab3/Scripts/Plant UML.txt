@@ -1,0 +1,81 @@
+@startuml
+' AI-enhanced Repository Evaluation - Activity diagram with swimlanes
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor White
+  BorderColor Black
+  FontSize 11
+}
+
+title Repository Process Evaluation Workflow
+
+start
+
+partition "Repository / Input" {
+  :Repository Process\nEvaluation Started;
+  :Load Extracted API Data;
+  note right
+    Extracted API Data (XES)
+  end note
+}
+
+partition "Data Processing" {
+  -> DataProcessingStart
+  :Preprocess & Clean Events;
+  :Prepare Event Log (XES/CSV);
+}
+
+partition "Analysis (parallel)" {
+  fork
+    :Apply Statistical\nAnalysis;
+    :Calculate Metrics;
+    note right
+      Calculated Metrics
+    end note
+  fork again
+    :Apply Process Mining\nMethods;
+    :Generate Process Models;
+    note right
+      Process Models
+    end note
+  end fork
+}
+
+:Merge Obtained Results;
+note right
+  Results (Merged)
+end note
+
+if (Are results satisfiable?) then (Yes)
+  :Repository Process\nEvaluation Finished;
+  stop
+else (No)
+  :Refine Parameters / Request\nMore Data;
+  ' loop back to loading data (we re-run the preprocessing + analysis)
+  -> :Load Extracted API Data;
+  note right
+    (Re-run pipeline)
+  end note
+  ' After looping, continue to Data Processing and Analysis again
+  -> :Preprocess & Clean Events;
+  -> :Prepare Event Log (XES/CSV);
+  fork
+    :Apply Statistical\nAnalysis;
+    :Calculate Metrics;
+  fork again
+    :Apply Process Mining\nMethods;
+    :Generate Process Models;
+  end fork
+  :Merge Obtained Results;
+  if (Are results satisfiable?) then (Yes)
+    :Repository Process\nEvaluation Finished;
+    stop
+  else (No)
+    ' To avoid infinite text expansion, show that the loop continues
+    --> :Refine Parameters / Request\nMore Data;
+    stop
+  endif
+endif
+
+@enduml

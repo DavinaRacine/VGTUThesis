@@ -1,0 +1,93 @@
+@startuml
+title AI-Enhanced Repository Evaluation Workflow (with Feedback & Dashboard)
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor White
+  BorderColor Black
+  FontSize 11
+}
+skinparam note {
+  BackgroundColor #FEFBEA
+  BorderColor #CCCC99
+}
+
+start
+:Repository Process\nEvaluation Started;
+
+partition "Data Collection" {
+  :Load Extracted API Data;
+  note right
+    Extracted GitHub Event Logs
+  end note
+  :Preprocess Raw Data;
+}
+
+partition "GAI Data Curator" {
+  :Clean & Enrich Data;
+  note right
+    - Detects inconsistencies\n- Fills missing values\n- Normalizes formats
+  end note
+  --> :Preprocess Raw Data;
+}
+
+partition "Analysis" {
+  fork
+    :Apply Statistical\nAnalysis;
+    :Calculate Metrics;
+    note right
+      Metrics: commits, issues,\nresponse time, etc.
+    end note
+    :GAI Insight Summarizer;
+    note right
+      Converts numeric results\ninto human-readable insights
+    end note
+    --> :Calculate Metrics;
+  fork again
+    :Apply Process Mining\nMethods;
+    :Generate Process Models;
+    note right
+      Discovers event sequences\nand process structures
+    end note
+    :GAI Pattern Interpreter;
+    note right
+      Explains patterns,\nbottlenecks, inefficiencies
+    end note
+    --> :Generate Process Models;
+  end fork
+}
+
+:Merge Obtained Results;
+
+partition "GAI Reliability Advisor" {
+  :Aggregate Insights & Compute\nReliability Score;
+  note right
+    Combines results,\nidentifies weaknesses,\ncreates recommendations
+  end note
+  --> :Merge Obtained Results;
+}
+
+partition "Reporting & Feedback" {
+  :Display Results on\nInteractive Dashboard;
+  note right
+    Shows reliability rating,\ntrends, process visuals
+  end note
+
+  if (Are results acceptable?) then (Yes)
+    :Finalize Reliability Report;
+    stop
+  else (No)
+    :Researcher Adjusts\nParameters/Thresholds;
+    note right
+      Researcher may tweak\nanalysis filters or models
+    end note
+    :GAI Reliability Advisor\nTriggers Feedback Loop;
+    note right
+      Requests new data\nor re-analysis
+    end note
+    --> :Load Extracted API Data;
+  endif
+}
+
+@enduml

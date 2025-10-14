@@ -1,0 +1,93 @@
+@startuml
+' AI-enhanced Repository Evaluation - Activity diagram with swimlanes and GAI agents
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor White
+  BorderColor Black
+  FontSize 11
+}
+
+title Repository Process Evaluation Workflow (with GAI agents)
+
+start
+
+partition "Repository / Input" {
+  :Repository Process\nEvaluation Started;
+  :Load Extracted API Data;
+  note right
+    Extracted API Data (XES)
+  end note
+}
+
+partition "Data Processing" {
+  :Preprocess & Clean Events;
+  :Prepare Event Log (XES/CSV);
+}
+
+partition "Analysis (parallel)" {
+  fork
+    :Apply Statistical\nAnalysis;
+    :Calculate Metrics;
+    note right
+      Calculated Metrics
+    end note
+
+    ' GAI Insight Summarizer reacts to metrics (dotted association)
+    :GAI Insight Summarizer;
+    note right
+      Interprets metrics in natural language
+    end note
+    --.-> :Calculate Metrics
+
+  fork again
+    :Apply Process Mining\nMethods;
+    :Generate Process Models;
+    note right
+      Process Models
+    end note
+
+    ' GAI Pattern Interpreter inspects generated models (dotted association)
+    :GAI Pattern Interpreter;
+    note right
+      Describes model patterns & inefficiencies
+    end note
+    --.-> :Generate Process Models
+
+  end fork
+}
+
+' GAI Data Curator is associated with the data loading / preprocessing steps
+partition "GAI Support" {
+  :GAI Data Curator;
+  note right
+    Cleans/enriches raw API logs,\ninfers missing fields
+  end note
+  --.-> :Load Extracted API Data
+  --.-> :Preprocess & Clean Events
+}
+
+:Merge Obtained Results;
+note right
+  Combined Statistical & Process Insights
+end note
+
+' GAI Reliability Advisor aggregates merged results to compute score & recommendations
+:GAI Reliability Advisor;
+note right
+  Aggregates analytics, computes reliability score,\nand produces recommendations
+end note
+--.-> :Merge Obtained Results
+
+if (Are results satisfiable?) then (Yes)
+  :Repository Process\nEvaluation Finished;
+  stop
+else (No)
+  :Refine Parameters / Request\nMore Data;
+  note right
+    Loop back to reload and reprocess data
+  end note
+  -> :Load Extracted API Data;
+endif
+
+@enduml
