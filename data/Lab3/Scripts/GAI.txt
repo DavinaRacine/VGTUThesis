@@ -1,0 +1,67 @@
+@startuml
+title GAI Agents in Repository Quality Assessment Workflow
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor #EAF6FF
+  BorderColor #336699
+  FontColor #000000
+  FontSize 12
+  FontStyle bold
+}
+skinparam note {
+  BackgroundColor #FEFBEA
+  BorderColor #CCCC99
+  FontColor #000000
+}
+
+start
+
+:GAI Data Curator;
+note right
+  🧩 Cleans and enriches raw GitHub event data\n
+  - Detects anomalies and missing fields\n
+  - Suggests schema corrections or transformations\n
+  - Ensures data consistency before analysis
+end note
+
+:GAI Insight Summarizer;
+note right
+  📊 Interprets computed metrics\n
+  - Converts numerical results into human-readable insights\n
+  - Identifies trends, anomalies, and risks\n
+  - Provides textual summaries for researchers
+end note
+
+:GAI Pattern Interpreter;
+note right
+  🔄 Analyzes process mining models\n
+  - Explains discovered patterns, loops, or bottlenecks\n
+  - Generates natural-language explanations\n
+  - Supports visualization of repository workflows
+end note
+
+:GAI Reliability Advisor;
+note right
+  🧠 Aggregates insights and scores reliability\n
+  - Combines statistical + process mining outputs\n
+  - Assigns repository reliability score\n
+  - Suggests quality improvement actions\n
+  - Triggers feedback loop for re-analysis if needed
+end note
+
+if (Results satisfactory?) then (Yes)
+  :Generate Final Reliability Report;
+  stop
+else (No)
+  :Feedback Loop Initiated by GAI Reliability Advisor;
+  note right
+    🔁 Advisor requests data re-cleaning,\n
+    metric recalculation, or process re-mining\n
+    via other GAI agents for iterative improvement
+  end note
+  --> :GAI Data Curator;
+endif
+
+@enduml
