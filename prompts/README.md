@@ -58,7 +58,7 @@ Below the AI is used to generate mock data (X variables), perform calculations (
 | data-analyzer | 78 | 85 | 80 | 75 | **79.5** | **Good** |
 | webhelper | 60 | 65 | 55 | 50 | **57.5** | **Moderate** |
 | testmate | 82 | 87 | 90 | 85 | **86.0** | **Excellent** |
-| bugtrack-lite | 40 | 50 | 45 | 35 | **42.5** | **Poor** |
+| bugtrack-lite | 40 | 40 | 35 | 35 | **37.5** | **Poor** |
 
 ### 💡 Example JSON Output
 
@@ -68,7 +68,7 @@ Below the AI is used to generate mock data (X variables), perform calculations (
   {"repository_name": "data-analyzer", "reliability_index": 79.5, "reliability_level": "Good"},
   {"repository_name": "webhelper", "reliability_index": 57.5, "reliability_level": "Moderate"},
   {"repository_name": "testmate", "reliability_index": 86.0, "reliability_level": "Excellent"},
-  {"repository_name": "bugtrack-lite", "reliability_index": 42.5, "reliability_level": "Poor"}
+  {"repository_name": "bugtrack-lite", "reliability_index": 37.5, "reliability_level": "Poor"}
 ]
 ```
 
