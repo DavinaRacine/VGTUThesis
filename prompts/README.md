@@ -4,6 +4,7 @@
 This lab demonstrates how Generative AI (GAI) can generate synthetic repository data and calculate a **Repository Reliability Index (RRI)** from four key process metrics extracted from GitHub events.  
 The RRI is calculated as the **average of normalized metric scores**, representing a simplified AI reasoning approach. This information is also saved in word document `Prompts.docx` in this location. Sample output after running these prompts inside ChatGPT are located in `VGTUThesis/data/Lab4`. 
 
+Below the AI is used to generate mock data (X variables), perform calculations (Y variable), and interpret the results automatically.
 ---
 
 ## ⚙️ Step 1 — Prompt: Generate Mock Metrics (X Variables)
