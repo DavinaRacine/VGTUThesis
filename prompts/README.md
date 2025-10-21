@@ -13,21 +13,21 @@ The RRI is calculated as the **average of normalized metric scores**, representi
 > Generate mock values for the following four metrics for 5 GitHub repositories.  
 > Each metric is on a scale from 0 to 100, where higher is better.  
 > Metrics:
-> - `issue_resolution_time` (speed of resolving issues; higher = faster resolution)  
-> - `pull_request_merge_rate` (percentage of merged PRs)  
-> - `commit_frequency` (normalized to 100; higher = more active)  
-> - `code_review_comments` (normalized review depth; higher = more collaborative)  
-> Provide results as a JSON array with 5 repositories of mixed performance levels.  
+> - `review_rigor_score` (depth and frequency of code reviews)  
+> - `pr_merge_ratio` (percentage of successfully merged pull requests)  
+> - `contributor_diversity_index` (number and activity diversity of contributors)  
+> - `issue_resolution_rate` (speed and efficiency of resolving issues)  
+> Provide results as a JSON array with 5 repositories showing mixed performance levels.
 
 ### 🧾 Example Output (Mock X Data)
 
 ```json
 [
-  {"repository_name": "dev-roadmap", "issue_resolution_time": 95, "pull_request_merge_rate": 92, "commit_frequency": 88, "code_review_comments": 90},
-  {"repository_name": "data-analyzer", "issue_resolution_time": 78, "pull_request_merge_rate": 85, "commit_frequency": 80, "code_review_comments": 75},
-  {"repository_name": "webhelper", "issue_resolution_time": 60, "pull_request_merge_rate": 65, "commit_frequency": 55, "code_review_comments": 50},
-  {"repository_name": "testmate", "issue_resolution_time": 82, "pull_request_merge_rate": 87, "commit_frequency": 90, "code_review_comments": 85},
-  {"repository_name": "bugtrack-lite", "issue_resolution_time": 40, "pull_request_merge_rate": 50, "commit_frequency": 45, "code_review_comments": 35}
+  {"repository_name": "dev-roadmap", "review_rigor_score": 94, "pr_merge_ratio": 91, "contributor_diversity_index": 89, "issue_resolution_rate": 93},
+  {"repository_name": "data-analyzer", "review_rigor_score": 78, "pr_merge_ratio": 82, "contributor_diversity_index": 79, "issue_resolution_rate": 74},
+  {"repository_name": "webhelper", "review_rigor_score": 62, "pr_merge_ratio": 68, "contributor_diversity_index": 60, "issue_resolution_rate": 58},
+  {"repository_name": "testmate", "review_rigor_score": 86, "pr_merge_ratio": 90, "contributor_diversity_index": 88, "issue_resolution_rate": 84},
+  {"repository_name": "bugtrack-lite", "review_rigor_score": 42, "pr_merge_ratio": 55, "contributor_diversity_index": 50, "issue_resolution_rate": 39}
 ]
 ```
 
@@ -39,18 +39,18 @@ The RRI is calculated as the **average of normalized metric scores**, representi
 > Based on the following repository metrics, calculate the *Repository Reliability Index (RRI)* for each repository.  
 > Formula:  
 > \[
-> RRI = (issue\_resolution\_time + pull\_request\_merge\_rate + commit\_frequency + code\_review\_comments) / 4
+> RRI = (review\_rigor\_score + pr\_merge\_ratio + contributor\_diversity\_index + issue\_resolution\_rate) / 4
 > \]
 > Then classify the reliability based on this scale:
-> - 0–49 → **Poor**
-> - 50–69 → **Moderate**
-> - 70–84 → **Good**
-> - 85–100 → **Excellent**  
-> Return a JSON output with each repository’s calculated RRI (rounded to 1 decimal) and reliability label.
+> - 0–40 → **Poor**
+> - 41–60 → **Moderate**
+> - 61–80 → **Good**
+> - 81–100 → **Excellent**  
+> Return an Excel and JSON output with each repository’s calculated RRI (rounded to 1 decimal) and reliability label.
 
-### ✅ Example Output (With Calculations)
+### ✅ Example Excel Output (With Calculations)
 
-| Repository | Issue Resolution | Merge Rate | Commit Frequency | Code Review | RRI (avg) | Reliability |
+| Repository | Review Rigor | PR Merge | Contributor Diversity | Issue Resolution | RRI (avg) | Reliability |
 |-------------|------------------|-------------|------------------|--------------|------------|--------------|
 | dev-roadmap | 95 | 92 | 88 | 90 | **91.25** | **Excellent** |
 | data-analyzer | 78 | 85 | 80 | 75 | **79.5** | **Good** |
@@ -82,11 +82,11 @@ The RRI is calculated as the **average of normalized metric scores**, representi
 
 | Repository | Reliability | Suggestion |
 |-------------|--------------|-------------|
-| dev-roadmap | Excellent | Maintain current review quality and active commits. |
-| testmate | Excellent | Keep PR merge rates high and continue strong collaboration. |
-| data-analyzer | Good | Improve issue resolution speed slightly to reach excellent reliability. |
-| webhelper | Moderate | Increase commit frequency and encourage more code reviews. |
-| bugtrack-lite | Poor | Prioritize issue resolution and increase PR reviews to stabilize quality. |
+| dev-roadmap | Excellent | Maintain rigorous code review practices and strong contributor engagement. |
+| testmate | Excellent | Keep high merge efficiency and issue responsiveness. |
+| data-analyzer | Good | Enhance contributor diversity and speed of issue resolution to reach excellent reliability. |
+| webhelper | Moderate | Increase review rigor and contributor activity. |
+| bugtrack-lite | Poor | Focus on faster issue resolution and higher-quality reviews to improve reliability. |
 
 ---
 
@@ -98,7 +98,7 @@ The RRI is calculated as the **average of normalized metric scores**, representi
 
 ### 🗒️ Example Output
 
-> The AI analysis identified *dev-roadmap* and *testmate* as the most reliable repositories, both demonstrating high merge rates, consistent commit activity, and rich code review participation. *Data-analyzer* shows good reliability but could benefit from quicker issue turnaround. *Webhelper* exhibits moderate reliability, suggesting a need for increased team activity and review engagement. *Bugtrack-lite* remains a high-risk repository due to slow issue resolution and low collaboration, indicating potential process inefficiencies that require targeted improvement.
+> The AI analysis revealed that dev-roadmap and testmate are the most reliable repositories, showcasing mature development processes and strong contributor engagement. Data-analyzer demonstrates good performance but could enhance its issue resolution rate to achieve excellent reliability. Webhelper is moderately reliable, reflecting areas for improvement in review quality and developer activity. Bugtrack-lite remains high-risk, requiring targeted improvements in collaboration and responsiveness to boost its reliability index.
 
 ---
 
