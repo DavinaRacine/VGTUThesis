@@ -1,6 +1,6 @@
 ### 📂 About This Folder
 
-This folder contains example Excel files that were generated using prompts provided by ChatGPT to ChatGPT as part of my thesis work on **Development Project Quality Assessment using Event-Based Methods**.
+This folder contains example Excel files that were generated using prompts, provided by ChatGPT (stored in `VGTUThesis/prompts/`), given to ChatGPT as part of my thesis work on **Development Project Quality Assessment using Event-Based Methods**.
 
 Each file includes simulated data outputs for repository reliability analysis based on the following key metrics:
 - **Review Rigor Score**
