@@ -13,6 +13,7 @@ This work extends the prompt engineering design from **Lab 4**, located in `VGTU
 ## ⚙️ Notebook Setup
 Link to Colab document: https://colab.research.google.com/drive/1UXoVAv1qfryPWbLiYB6ENWOhcfyq2QnO?usp=sharing
 
+--- 
 
 ### 🧩 Process Flow
 1. **Input Stage** – Repository metrics (X) provided as structured JSON.  
@@ -23,6 +24,8 @@ Link to Colab document: https://colab.research.google.com/drive/1UXoVAv1qfryPWbL
 ✅ Both zero-shot and few-shot runs demonstrate end-to-end AI reasoning — from data input to final prediction.
 """)
 
+---
+
 ### Reflection
 
 This laboratory work successfully implemented an end-to-end AI agent for repository reliability assessment using the Gemini API in Google Colab.  
@@ -31,11 +34,9 @@ The system processes raw repository metrics and computes reliability indices thr
 Gemini handled both structured numeric data and qualitative interpretation (labels like "Good" or "Excellent") effectively, producing explainable results. The prompt-based architecture proved lightweight, interpretable, and flexible for AI-assisted data analysis.  
 Future improvements could include integrating automatic metric normalization, visual dashboards for reliability trends, and dataset-driven fine-tuning for even higher prediction consistency.
 
-
-
 ---
 
-✅ **Summary Checklist**
+### ✅ **Summary Checklist**
 
 | Task | Status |
 |------|--------|
