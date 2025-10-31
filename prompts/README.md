@@ -2,12 +2,151 @@
 
 ## 📊 Context
 This lab demonstrates how Generative AI (GAI) can generate synthetic repository data and calculate a **Repository Reliability Index (RRI)** from four key process metrics extracted from GitHub events.  
-The RRI is calculated as the **average of normalized metric scores**, representing a simplified AI reasoning approach. This information is also saved in word document `Prompts.docx` in this location. Sample output after running these prompts inside ChatGPT are located in `VGTUThesis/data/Lab4`. 
+The RRI is calculated as the **average of normalized metric scores**, representing a simplified AI reasoning approach. This information is also saved in word document `Prompts.docx` in this location. 
 
-Below are the steps AI used including prompts to generate mock data (X variables), perform calculations (Y variable), and interpret the results automatically.
+Below are the steps AI used including prompts to generate mock data (X variables) and perform calculations to generate Y variables and interpret the results automatically. There are 3 prompt sections: 1st one represents a zero shot approach, 2nd one represents a few shot approach, 3rd one represents a more detailed approach. Sample output after running third section prompts inside ChatGPT are located in `VGTUThesis/data/Lab4`. 
 
 ---
+# Section 1 - Zero Shot Approach
+## 🧠 Prompt — Zero-Shot (Simple AI Evaluation)
+You are an AI agent for repository reliability assessment.
+Calculate the Repository Reliability Index (RRI) and reliability classification for each repository using the formula:
+RRI=(review_rigor_score+pr_merge_ratio+contributor_diversity_index+issue_resolution_rate)/4
 
+Use the following reliability scale:
+-	0–40 → Poor
+-	41–60 → Moderate
+-	61–80 → Good
+-	81–100 → Excellent
+
+Return results both as a table and as JSON with fields: `repository`, `RRI` (rounded to 1 decimal), and `reliability_label`.
+Here is the input data:
+```json
+[
+    {"repository": "repo_1", "review_rigor_score": 45.6, "pr_merge_ratio": 96.1, "contributor_diversity_index": 97.9, "issue_resolution_rate": 86.4},
+    {"repository": "repo_2", "review_rigor_score": 28.7, "pr_merge_ratio": 49.3, "contributor_diversity_index": 10.5, "issue_resolution_rate": 44.7},
+    {"repository": "repo_3", "review_rigor_score": 59.1, "pr_merge_ratio": 41.1, "contributor_diversity_index": 28.9, "issue_resolution_rate": 39.2},
+    {"repository": "repo_4", "review_rigor_score": 58.7, "pr_merge_ratio": 44.8, "contributor_diversity_index": 44.2, "issue_resolution_rate": 42.4},
+    {"repository": "repo_5", "review_rigor_score": 36.2, "pr_merge_ratio": 41.0, "contributor_diversity_index": 74.5, "issue_resolution_rate": 33.0}
+]
+```
+
+### Goal
+Provide new repository metrics (X) to the AI system and request the calculation of the *Repository Reliability Index (RRI)* and reliability classification.
+
+### Formula
+\[
+RRI = (review\_rigor\_score + pr\_merge\_ratio + contributor\_diversity\_index + issue\_resolution\_rate) / 4
+\]
+
+### Reliability Scale
+- 0–40 → **Poor**  
+- 41–60 → **Moderate**  
+- 61–80 → **Good**  
+- 81–100 → **Excellent**
+
+### Input (X)
+```json
+[
+    {"repository": "repo_1", "review_rigor_score": 45.6, "pr_merge_ratio": 96.1, "contributor_diversity_index": 97.9, "issue_resolution_rate": 86.4},
+    {"repository": "repo_2", "review_rigor_score": 28.7, "pr_merge_ratio": 49.3, "contributor_diversity_index": 10.5, "issue_resolution_rate": 44.7},
+    {"repository": "repo_3", "review_rigor_score": 59.1, "pr_merge_ratio": 41.1, "contributor_diversity_index": 28.9, "issue_resolution_rate": 39.2},
+    {"repository": "repo_4", "review_rigor_score": 58.7, "pr_merge_ratio": 44.8, "contributor_diversity_index": 44.2, "issue_resolution_rate": 42.4},
+    {"repository": "repo_5", "review_rigor_score": 36.2, "pr_merge_ratio": 41.0, "contributor_diversity_index": 74.5, "issue_resolution_rate": 33.0}
+]
+```
+
+### Output (Y)
+```json
+[
+  {"repository": "repo_1", "RRI": 81.5, "reliability_label": "Excellent"},
+  {"repository": "repo_2", "RRI": 33.3, "reliability_label": "Poor"},
+  {"repository": "repo_3", "RRI": 42.1, "reliability_label": "Moderate"},
+  {"repository": "repo_4", "RRI": 47.5, "reliability_label": "Moderate"},
+  {"repository": "repo_5", "RRI": 46.2, "reliability_label": "Moderate"}
+]
+```
+
+---
+# Section 2 - Few Shot Approach
+## 🧠 Prompt — Few-Shot (AI Learns from Example)
+You are an AI agent trained to assess repository reliability.
+Learn from the example below showing how input metrics map to an RRI and reliability classification. Then apply the same logic to the new repositories provided.
+
+Formula:
+
+RRI=(review_rigor_score+pr_merge_ratio+contributor_diversity_index+issue_resolution_rate)/4
+
+Scale:
+-	0–40 → Poor
+-	41–60 → Moderate
+-	61–80 → Good
+-	81–100 → Excellent
+
+Known Example (X → Y):
+-	Review Rigor Score: 76.7
+-	PR Merge Ratio: 68.4
+-	Contributor Diversity Index: 42.1
+-	Issue Resolution Rate: 95.4
+-	RRI: 70.6 → Good
+
+New Input Data:
+```json
+[
+    {
+        "repository": "repo_A",
+        "review_rigor_score": 82.3,
+        "pr_merge_ratio": 90.4,
+        "contributor_diversity_index": 87.9,
+        "issue_resolution_rate": 91.0
+    },
+    {
+        "repository": "repo_B",
+        "review_rigor_score": 61.1,
+        "pr_merge_ratio": 72.5,
+        "contributor_diversity_index": 69.3,
+        "issue_resolution_rate": 58.8
+    },
+    {
+        "repository": "repo_C",
+        "review_rigor_score": 48.2,
+        "pr_merge_ratio": 51.4,
+        "contributor_diversity_index": 55.0,
+        "issue_resolution_rate": 45.9
+    }
+]
+```
+
+Return results both as a table and as JSON with fields: `repository`, `RRI` (rounded to 1 decimal), and `reliability_label`.
+
+### Goal
+Provide the AI with one known (X, Y) example to help it “learn” how RRI and reliability are determined, then predict the reliability for new repositories.
+
+### Known Example
+| Review Rigor | PR Merge | Diversity | Issue Resolution | RRI | Reliability |
+|--------------|-----------|------------|------------------|------|--------------|
+| 76.7 | 68.4 | 42.1 | 95.4 | **70.6** | **Good** |
+
+### New Input (X)
+```json
+[
+    {"repository": "repo_A", "review_rigor_score": 82.3, "pr_merge_ratio": 90.4, "contributor_diversity_index": 87.9, "issue_resolution_rate": 91.0},
+    {"repository": "repo_B", "review_rigor_score": 61.1, "pr_merge_ratio": 72.5, "contributor_diversity_index": 69.3, "issue_resolution_rate": 58.8},
+    {"repository": "repo_C", "review_rigor_score": 48.2, "pr_merge_ratio": 51.4, "contributor_diversity_index": 55.0, "issue_resolution_rate": 45.9}
+]
+```
+
+### Output (Y)
+```json
+[
+  {"repository": "repo_A", "RRI": 87.9, "reliability_label": "Excellent"},
+  {"repository": "repo_B", "RRI": 65.4, "reliability_label": "Good"},
+  {"repository": "repo_C", "RRI": 50.1, "reliability_label": "Moderate"}
+]
+```
+
+---
+# Section 3 - Detailed Approach
 ## ⚙️ Step 1 — Prompt: Generate Mock Metrics (X Variables)
 
 **Prompt:**
@@ -104,7 +243,7 @@ Below are the steps AI used including prompts to generate mock data (X variables
 
 ---
 
-## 📘 Reflection: Pros & Cons of Using ChatGPT for Lab 4
+# 📘 Reflection: Pros & Cons of Using ChatGPT for Lab 4
 
 ### ✅ **Pros**
 - Rapid generation of realistic mock data for repositories.
