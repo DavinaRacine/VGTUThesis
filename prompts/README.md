@@ -73,10 +73,6 @@ RRI = (review\_rigor\_score + pr\_merge\_ratio + contributor\_diversity\_index +
 You are an AI agent trained to assess repository reliability.
 Learn from the example below showing how input metrics map to an RRI and reliability classification. Then apply the same logic to the new repositories provided.
 
-Formula:
-
-RRI=(review_rigor_score+pr_merge_ratio+contributor_diversity_index+issue_resolution_rate)/4
-
 Scale:
 -	0–40 → Poor
 -	41–60 → Moderate
