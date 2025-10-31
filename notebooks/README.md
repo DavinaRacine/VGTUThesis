@@ -32,7 +32,8 @@ This laboratory work successfully implemented an end-to-end AI agent for reposit
 The system processes raw repository metrics and computes reliability indices through structured prompt reasoning. The **zero-shot** approach shows the model’s ability to infer outcomes directly from instructions, while the **few-shot** approach enhances contextual understanding through a learned example.  
 
 Gemini handled both structured numeric data and qualitative interpretation (labels like "Good" or "Excellent") effectively, producing explainable results. The prompt-based architecture proved lightweight, interpretable, and flexible for AI-assisted data analysis.  
-Future improvements could include integrating automatic metric normalization, visual dashboards for reliability trends, and dataset-driven fine-tuning for even higher prediction consistency.
+Future improvements could include adding real-time GitHub API data collection, enhancing Gemini reasoning layer to infer insights (like root causes for low reliability), and implementing visualization dashboards for dynamic monitoring.
+
 
 ---
 
