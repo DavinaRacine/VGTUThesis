@@ -11,18 +11,42 @@ This work extends the prompt engineering design from **Lab 4**, located in `VGTU
 ---
 
 ## ⚙️ Notebook Setup
-```python
-# Import necessary libraries
-import os
-from google.colab import userdata
-from google.colab import output
 
-# Securely load Gemini API key from Colab secrets
-GEMINI_KEY = userdata.get('GEMINI_KEY')
 
-# Install and import Gemini client
-!pip install -q google-generativeai
-import google.generativeai as genai
 
-# Configure Gemini
-genai.configure(api_key=GEMINI_KEY)
+### 🧩 Process Flow
+1. **Input Stage** – Repository metrics (X) provided as structured JSON.  
+2. **Reasoning Stage** – Gemini interprets the formula and scale using prompt instructions.  
+3. **Inference Stage** – The model calculates RRI and classifies reliability.  
+4. **Output Stage** – Results displayed as tables and JSON outputs for integration or analysis.  
+
+✅ Both zero-shot and few-shot runs demonstrate end-to-end AI reasoning — from data input to final prediction.
+""")
+
+### Reflection
+
+This laboratory work successfully implemented an end-to-end AI agent for repository reliability assessment using the Gemini API in Google Colab.  
+The system processes raw repository metrics and computes reliability indices through structured prompt reasoning. The **zero-shot** approach shows the model’s ability to infer outcomes directly from instructions, while the **few-shot** approach enhances contextual understanding through a learned example.  
+
+Gemini handled both structured numeric data and qualitative interpretation (labels like "Good" or "Excellent") effectively, producing explainable results. The prompt-based architecture proved lightweight, interpretable, and flexible for AI-assisted data analysis.  
+Future improvements could include integrating automatic metric normalization, visual dashboards for reliability trends, and dataset-driven fine-tuning for even higher prediction consistency.
+
+
+
+---
+
+✅ **Summary Checklist**
+
+| Task | Status |
+|------|--------|
+| Google Colab notebook created | ✅ |
+| GEMINI_KEY loaded securely via `userdata` | ✅ |
+| Both zero-shot and few-shot prompts implemented | ✅ |
+| Demonstrated reasoning → inference → output | ✅ |
+| Visual explanation of the process | ✅ |
+| Reflection paragraph added | ✅ |
+| Notebook linked in GitHub `/notebooks/` directory | ✅ |
+
+---
+
+
