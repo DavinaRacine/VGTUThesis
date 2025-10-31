@@ -22,7 +22,6 @@ Link to Colab document: https://colab.research.google.com/drive/1UXoVAv1qfryPWbL
 4. **Output Stage** – Results displayed as tables and JSON outputs for integration or analysis.  
 
 ✅ Both zero-shot and few-shot runs demonstrate end-to-end AI reasoning — from data input to final prediction.
-""")
 
 ---
 
