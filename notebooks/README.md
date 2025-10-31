@@ -10,13 +10,8 @@ This work extends the prompt engineering design from **Lab 4**, located in `VGTU
 
 ---
 
-## ⚙️ Notebook Setup
+## ⚙️ Notebook
 Link to Colab document: https://colab.research.google.com/drive/1UXoVAv1qfryPWbLiYB6ENWOhcfyq2QnO?usp=sharing
-
-- Imports necessary libraries
-- Securely load Gemini API key from Colab secrets
-- Install and import Gemini client
-- Configure Gemini
 
 --- 
 
