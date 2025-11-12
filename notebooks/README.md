@@ -89,7 +89,7 @@ Link to Colab document: https://colab.research.google.com/drive/1FKSsJP4ar_V_xQE
 ### 💬 Reflection
 This laboratory achieved a **true implementation** of Retrieval-Augmented Generation within the IRRA framework.  
 The integration of ChromaDB and Gemini successfully bridges structured numeric analysis with contextual memory, improving explanation quality and output grounding.  
-***Future improvements*** could integrate live GitHub data ingestion, similarity scoring visualization, and reliability trend tracking over time.
+**Future improvements** could integrate live GitHub data ingestion, similarity scoring visualization, and reliability trend tracking over time.
 
 ---
 
