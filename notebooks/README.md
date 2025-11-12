@@ -59,7 +59,7 @@ The objective is to enable context-aware reasoning by combining **vector-based r
 ---
 
 ## ⚙️ Notebook
-Link to Colab document: https://colab.research.google.com/drive/YOUR-LAB6-COLAB-ID-HERE
+Link to Colab document: https://colab.research.google.com/drive/1FKSsJP4ar_V_xQETzDCJZIApyrfa7uxI?usp=sharing
 
 ---
 
