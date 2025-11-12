@@ -50,52 +50,46 @@ Future improvements could include adding real-time GitHub API data collection, e
 
 ---------------
 
-# 🧩 Lab 6 — Retrieval-Augmented Generation (RAG) Integration with Gemini
+# 🧩 Lab 6 — True Retrieval-Augmented Generation (RAG) Implementation
 
 ## 🎯 Goal
-This laboratory extends the Intelligent Repository Reliability Analyzer (IRRA) by integrating a **Retrieval-Augmented Generation (RAG)** pipeline.  
-The objective is to enable context-aware reasoning by combining **vector-based retrieval (ChromaDB)** with **natural language generation (Gemini API)**, allowing the system to recall relevant repository examples before producing reliability predictions.
+In this lab, the Intelligent Repository Reliability Analyzer (IRRA) is expanded into a **fully operational RAG system**.  
+Using **ChromaDB** for vector storage and retrieval, and **Gemini API** for reasoning, the system now demonstrates a realistic data-to-AI pipeline that grounds responses in semantically relevant examples.
 
 ---
 
 ## ⚙️ Notebook
 Link to Colab document: https://colab.research.google.com/drive/1FKSsJP4ar_V_xQETzDCJZIApyrfa7uxI?usp=sharing
 
+--- 
+
+## ⚙️ Implementation Summary
+1. **Vector Database (ChromaDB)**  
+   - Real embeddings created via `sentence-transformers` and stored in a persistent local Chroma instance.  
+2. **Retriever Stage**  
+   - A natural-language query is embedded and compared to stored examples using cosine similarity.  
+   - Top-3 most similar examples are retrieved.  
+3. **Augmentation Stage**  
+   - Retrieved examples are inserted into a contextual prompt along with new repository metrics.  
+4. **Generation Stage (Gemini)**  
+   - Gemini produces a reliability index (0–100) and label (Poor → Excellent) using both numerical data and retrieved context.  
+5. **Visualization**  
+   - The notebook outputs both JSON and a formatted table of retrieved examples before displaying the Gemini response.
+
 ---
 
-### 🧠 System Architecture
-The IRRA system now consists of three layers:
-
-1. **Retrieval Layer (ChromaDB)**  
-   - Stores historical repository examples and their computed reliability classifications as semantic vectors.  
-   - When the user issues a query, ChromaDB retrieves the most relevant examples based on vector similarity.  
-
-2. **Augmentation Layer**  
-   - Combines retrieved examples with the user’s new input metrics, forming a context-rich prompt for Gemini.  
-
-3. **Generation Layer (Gemini API)**  
-   - Gemini interprets the combined context and generates a predicted **Reliability Index** and **qualitative rating** (Poor → Excellent).  
-
----
-
-### ⚙️ Demonstration Flow
-1. The notebook embeds repository summaries into **ChromaDB**.  
-2. A **user prompt** (e.g., “Find repositories with strong review rigor and high resolution rates”) is sent to retrieve top 3 examples.  
-3. Retrieved examples are displayed in a formatted **table**.  
-4. The examples are injected into a **Gemini prompt**, which predicts reliability for a new repository.  
-5. The output demonstrates **retrieval → reasoning → generation** in a complete end-to-end pipeline.
+### 🧩 Process Flow
+1. Input prompt → vector embedding  
+2. Vector similarity search in ChromaDB  
+3. Retrieved examples → contextual prompt  
+4. Gemini reasoning → reliability prediction  
 
 ---
 
 ### 💬 Reflection
-This lab successfully implements a lightweight RAG architecture for the thesis system.  
-By connecting **vector retrieval** and **generative reasoning**, IRRA can now make informed predictions using both structured data and contextual memory.  
-Gemini produced more consistent, evidence-based reasoning when provided with retrieved examples, proving the effectiveness of augmentation.  
-
-Future improvements could include:
-- Expanding the ChromaDB collection with real GitHub repository embeddings.  
-- Using multiple retrieval layers (e.g., issues, pull requests, metrics).  
-- Visualizing similarity scores and RRI predictions through dashboards.  
+This laboratory achieved a **true implementation** of Retrieval-Augmented Generation within the IRRA framework.  
+The integration of ChromaDB and Gemini successfully bridges structured numeric analysis with contextual memory, improving explanation quality and output grounding.  
+Future iterations could integrate live GitHub data ingestion, similarity scoring visualization, and reliability trend tracking over time.
 
 ---
 
@@ -103,15 +97,14 @@ Future improvements could include:
 
 | Task | Status |
 |------|--------|
-| Google Colab RAG notebook created | ✅ |
-| GEMINI_KEY loaded securely via `userdata` | ✅ |
-| ChromaDB vector retrieval implemented | ✅ |
-| Top 3 results displayed in table form | ✅ |
-| Combined context + user query sent to Gemini | ✅ |
-| Reflection and architectural explanation included | ✅ |
+| Installed and configured ChromaDB & embeddings | ✅ |
+| Secure Gemini API key loaded | ✅ |
+| Vector storage and retrieval executed | ✅ |
+| Top-3 retrievals visualized in table | ✅ |
+| Context-augmented Gemini prompt run | ✅ |
+| RAG pipeline explained and documented | ✅ |
 | Notebook linked in GitHub `/notebooks/` directory | ✅ |
 
 ---
-
 
 
