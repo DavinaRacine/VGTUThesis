@@ -63,47 +63,128 @@ Link to Colab document: https://colab.research.google.com/drive/1FKSsJP4ar_V_xQE
 
 --- 
 
-## ⚙️ Implementation Summary
-1. **Vector Database (ChromaDB)**  
-   - Real embeddings created via `sentence-transformers` and stored in a persistent local Chroma instance.  
-2. **Retriever Stage**  
-   - A natural-language query is embedded and compared to stored examples using cosine similarity.  
-   - Top-3 most similar examples are retrieved.  
-3. **Augmentation Stage**  
-   - Retrieved examples are inserted into a contextual prompt along with new repository metrics.  
-4. **Generation Stage (Gemini)**  
-   - Gemini produces a reliability index (0–100) and label (Poor → Excellent) using both numerical data and retrieved context.  
-5. **Visualization**  
-   - The notebook outputs both JSON and a formatted table of retrieved examples before displaying the Gemini response.
+## 📌 Overview of What Was Implemented
+
+### 1. Generate 1,000+ synthetic dataset examples  
+A dataset containing over 1,000 examples of repository metric pairs `(X, y)` was generated.  
+Each example includes:
+- Review Rigor  
+- PR Merge Ratio  
+- Contributor Diversity Index  
+- Issue Resolution Rate  
+- Reliability Label (`Poor`, `Moderate`, `Good`, `Excellent`)
 
 ---
 
-### 🧩 Process Flow
-1. Input prompt → vector embedding  
-2. Vector similarity search in ChromaDB  
-3. Retrieved examples → contextual prompt  
-4. Gemini reasoning → reliability prediction  
+### 2. Store all examples inside ChromaDB  
+- A local persisted vector store is created (`duckdb+parquet` backend).  
+- Embeddings generated using: `sentence-transformers/all-MiniLM-L6-v2`  
+- Each example stored as:
+  - vector embedding  
+  - JSON metadata containing metrics  
+  - the label  
+  - example ID  
+
+---
+
+### 3. Retrieve Top-3 Similar Examples  
+For any new repository’s metrics:
+1. Embed input X  
+2. Query ChromaDB  
+3. Retrieve top-3 most semantically similar examples  
+4. Display:
+   - retrieved metadata  
+   - distances  
+   - GitHub-table view  
+   - JSON view  
+
+---
+
+### 4. Augment Prompt and Send to Gemini  
+The final prompt includes:
+- the new repository metrics  
+- the 3 most similar retrieved examples  
+- the full qualitative reliability scale  
+- an instruction to produce:
+  - predicted RRI (0–100)
+  - predicted reliability label
+  - reasoning (3–5 sentences)
+  - retrieved example references
+  - GitHub-formatted table of all metrics
+
+---
+
+### 5. End-to-End Execution in Google Colab  
+The final pipeline:
+Input Metrics Prompt
+→ Vector Embedding
+→ ChromaDB Vector Similarity Search
+→ Retrieve 3 Examples
+→ Build Augmented Contextual Prompt
+→ Gemini Output (RRI + Label + Reasoning)
+
+---
+
+## 📚 Notebook Structure  
+
+1. **Introduction (Markdown)**  
+2. **Install Dependencies (Code)**  
+3. **Environment Setup (Markdown + Code)**  
+4. **Generate Dataset (Markdown + Code)**  
+5. **Create & Populate ChromaDB (Markdown + Code)**  
+6. **Query & Retrieve Top-3 Examples (Markdown + Code)**  
+7. **Construct Augmented Prompt (Markdown + Code)**  
+8. **Gemini Prediction (Markdown + Code)**  
+9. **Reflection (Markdown)**  
+
+---
+
+## 📊 Example Output Structure  
+Gemini returns:
+
+```json
+{
+  "predicted_rri": 78.3,
+  "predicted_label": "Good",
+  "reasoning": "Repository demonstrates strong...",
+  "retrieved_examples": [124, 876, 331],
+  "metrics_table": "| Metric | Value | ..."
+}
+```
 
 ---
 
 ### 💬 Reflection
-This laboratory achieved a **true implementation** of Retrieval-Augmented Generation within the IRRA framework.  
-The integration of ChromaDB and Gemini successfully bridges structured numeric analysis with contextual memory, improving explanation quality and output grounding.  
-**Future improvements** could integrate live GitHub data ingestion, similarity scoring visualization, and reliability trend tracking over time.
+
+This lab successfully transforms IRRA from a static prompt-based tool into a true RAG-powered system using vector similarity search. The integration of ChromaDB and Gemini successfully bridges structured numeric analysis with contextual memory, improving explanation quality and output grounding. By anchoring predictions in retrieved examples, Gemini produces more accurate, consistent, and explainable outputs. This significantly reduces hallucination risk and increases trust in the predictions.
+
+Potential next steps:
+
+- Replace synthetic data with real live GitHub repository metrics / data ingestion
+
+- Use embeddings for PR/Issue sequences
+
+- Introduce ranking evaluation metrics (MRR, Recall@k)
+
+- Integrate UI dashboard for reliability insights / similarity scoring visualization
+
+- Reliability trend tracking over time
 
 ---
 
 ### ✅ **Summary Checklist**
 
-| Task | Status |
-|------|--------|
-| Installed and configured ChromaDB & embeddings | ✅ |
-| Secure Gemini API key loaded | ✅ |
-| Vector storage and retrieval executed | ✅ |
-| Top-3 retrievals visualized in table | ✅ |
-| Context-augmented Gemini prompt run | ✅ |
-| RAG pipeline explained and documented | ✅ |
-| Notebook linked in GitHub `/notebooks/` directory | ✅ |
+| Requirement                   | Status      |
+| ----------------------------- | ----------- |
+| Generate 1,000+ examples      | ✅ Completed |
+| Store examples in ChromaDB    | ✅ Completed |
+| Secure Gemini API key loaded  | ✅ Completed |
+| Use embeddings for similarity | ✅ Completed |
+| Retrieve Top-3 examples       | ✅ Completed |
+| Build augmented prompt        | ✅ Completed |
+| Send to Gemini                | ✅ Completed |
+| Full pipeline demonstrated    | ✅ Completed |
+| Reflection included           | ✅ Completed |
 
 ---
 
