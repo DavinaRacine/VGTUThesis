@@ -59,7 +59,7 @@ Using **ChromaDB** for vector storage and retrieval, and **Gemini API** for reas
 ---
 
 ## ⚙️ Notebook
-Link to Colab document: https://colab.research.google.com/drive/1FKSsJP4ar_V_xQETzDCJZIApyrfa7uxI?usp=sharing
+Link to Colab document: https://colab.research.google.com/drive/19EcYR_cgOOSATya63Egdjz684ijXMh2H?usp=sharing
 
 --- 
 
