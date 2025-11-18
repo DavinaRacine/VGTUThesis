@@ -180,9 +180,9 @@ Future Improvements / Potential next steps:
 
 | Requirement                   | Status      |
 | ----------------------------- | ----------- |
+| Secure Gemini API key loaded  | ✅ Completed |
 | Generate 1,000+ examples      | ✅ Completed |
 | Store examples in ChromaDB    | ✅ Completed |
-| Secure Gemini API key loaded  | ✅ Completed |
 | Use embeddings for similarity | ✅ Completed |
 | Retrieve Top-3 examples       | ✅ Completed |
 | Build augmented prompt        | ✅ Completed |
