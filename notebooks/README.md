@@ -97,7 +97,7 @@ For any new repository’s metrics:
 3. Retrieve top-3 most semantically similar examples  
 4. Display:
    - retrieved metadata  
-   - distances  
+   - distances (lower distance the higher similarity between query and retrieved document)  
    - GitHub-table view  
    - JSON view  
 
