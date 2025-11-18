@@ -148,10 +148,12 @@ Gemini returns:
   "predicted_rri": 78.3,
   "predicted_label": "Good",
   "reasoning": "Repository demonstrates strong...",
-  "retrieved_examples": [124, 876, 331],
-  "metrics_table": "| Metric | Value | ..."
+  "used_examples": [124, 876, 331],
+  "table_output": "| Metric | Value | ..."
 }
 ```
+
+Then displayed the Gemini's predicted metrics table in a format that is more easily read.
 
 ---
 
