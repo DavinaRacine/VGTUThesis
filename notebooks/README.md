@@ -80,7 +80,7 @@ Each example includes:
 ---
 
 ### 2. Store all examples inside ChromaDB  
-- A local persisted vector store is created (`duckdb+parquet` backend).  
+- A local persisted vector store is created (`./chroma_storage`).  
 - Embeddings generated using: `sentence-transformers/all-MiniLM-L6-v2`  
 - Each example stored as:
   - vector embedding  
