@@ -153,7 +153,7 @@ Gemini returns:
 }
 ```
 
-Then displayed the Gemini's predicted metrics table in a format that is more easily read.
+Then displayed the metrics table in a format that is more easily read.
 
 ---
 
