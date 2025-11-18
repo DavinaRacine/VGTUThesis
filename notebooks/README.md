@@ -163,12 +163,16 @@ Potential next steps:
 - Replace synthetic data with real live GitHub repository metrics / data ingestion
 
 - Use embeddings for PR/Issue sequences
+  
+- Add automatic normalization of metrics
 
 - Introduce ranking evaluation metrics (MRR, Recall@k)
 
 - Integrate UI dashboard for reliability insights / similarity scoring visualization
 
 - Reliability trend tracking over time
+
+- Implement evaluation metrics (accuracy & precision) comparing Gemini predictions vs. ground truth labels stored in the DB.
 
 ---
 
