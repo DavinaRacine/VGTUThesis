@@ -130,11 +130,9 @@ Input Metrics Prompt
 1. **Introduction (Markdown)**  
 2. **Install Dependencies (Code)**  
 3. **Environment Setup (Markdown + Code)**  
-4. **Generate Dataset (Markdown + Code)**  
-5. **Create & Populate ChromaDB (Markdown + Code)**  
+4. **Generate Dataset / Create & Populate ChromaDB (Markdown + Code)**  
 6. **Query & Retrieve Top-3 Examples (Markdown + Code)**  
-7. **Construct Augmented Prompt (Markdown + Code)**  
-8. **Gemini Prediction (Markdown + Code)**  
+7. **Construct Augmented Prompt / Gemini Prediction (Markdown + Code)**  
 9. **Reflection (Markdown)**  
 
 ---
