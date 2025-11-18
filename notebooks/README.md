@@ -54,7 +54,10 @@ Future improvements could include adding real-time GitHub API data collection, e
 
 ## 🎯 Goal
 In this lab, the Intelligent Repository Reliability Analyzer (IRRA) is expanded into a **fully operational RAG system**.  
-Using **ChromaDB** for vector storage and retrieval, and **Gemini API** for reasoning, the system now demonstrates a realistic data-to-AI pipeline that grounds responses in semantically relevant examples.
+Using **ChromaDB** for vector storage and retrieval, and **Gemini API** for reasoning, the system now demonstrates a realistic data-to-AI pipeline that grounds responses in semantically relevant examples. 
+
+> [!NOTE]
+In the final cell, the notebook includes an option to persist the RAG system’s latest run to disk, this saves a file to the temporary filesystem inside Google Colab, located at: `/content/last_rag_run.json`. You can view or download this file from the **Files** sidebar in Colab. This feature is included for traceability, allowing you to preserve the retrieved examples, the augmented prompt, and the model’s generated response for later inspection or debugging.
 
 ---
 
