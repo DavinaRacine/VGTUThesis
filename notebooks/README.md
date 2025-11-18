@@ -159,7 +159,7 @@ Gemini returns:
 
 This lab successfully transforms IRRA from a static prompt-based tool into a true RAG-powered system using vector similarity search. The integration of ChromaDB and Gemini successfully bridges structured numeric analysis with contextual memory, improving explanation quality and output grounding. By anchoring predictions in retrieved examples, Gemini produces more accurate, consistent, and explainable outputs. This significantly reduces hallucination risk and increases trust in the predictions.
 
-Future Improvements / Potential next steps:
+**Future Improvements / Potential next steps:**
 
 - Replace synthetic data with real live GitHub repository metrics / data ingestion
 
